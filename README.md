@@ -7,6 +7,8 @@
 
 > Datos en tiempo real de **Primera y Segunda Federación Española** de fútbol. Clasificaciones, próximos partidos, resultados recientes y marcadores en directo — con caché inteligente para no superar las 100 llamadas/día del plan gratuito.
 
+**[🌐 Ver demo en vivo](https://rfef-live.onrender.com)**
+
 ![Preview](./docs/preview.png)
 
 ---
