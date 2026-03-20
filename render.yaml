@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: rfef-live
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_KEY
+        sync: false        # Se introduce manualmente en el dashboard de Render
+      - key: ALLOWED_ORIGIN
+        sync: false        # URL pública de Render, ej: https://rfef-live.onrender.com

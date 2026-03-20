@@ -31,8 +31,8 @@ app.use(helmet({
       // 'unsafe-inline' necesario para estilos inline en HTML generado desde JS
       styleSrc:    ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc:     ["'self'", 'https://fonts.gstatic.com'],
-      // Logos de equipos vienen de api-sports; data: para SVG fallbacks
-      imgSrc:      ["'self'", 'data:', 'https://media.api-sports.io'],
+      // Logos de equipos: api-sports + TheSportsDB; data: para SVG fallbacks
+      imgSrc:      ["'self'", 'data:', 'https://media.api-sports.io', 'https://r2.thesportsdb.com', 'https://www.thesportsdb.com'],
       // Solo llamadas al propio servidor — nunca al exterior desde el cliente
       connectSrc:  ["'self'"],
       frameSrc:    ["'none'"],
