@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Datos en tiempo real de Primera y Segunda Federación española de fútbol" />
+  <title>RFEF Live</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════════ -->
+  <header class="navbar">
+    <div class="navbar__inner">
+
+      <!-- Marca -->
+      <div class="navbar__brand">
+        <svg class="navbar__logo" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="28" cy="28" r="26" fill="#CC0000" />
+          <circle cx="28" cy="28" r="24" fill="none" stroke="#ffffff" stroke-width="1.5" />
+          <!-- Balón simplificado -->
+          <circle cx="28" cy="28" r="10" fill="#ffffff" opacity="0.15" />
+          <text x="28" y="23" text-anchor="middle" fill="#ffffff"
+                font-size="9" font-family="Oswald,sans-serif" font-weight="700"
+                letter-spacing="0.5">RFEF</text>
+          <text x="28" y="35" text-anchor="middle" fill="#ffffff"
+                font-size="7" font-family="Roboto,sans-serif" font-weight="300"
+                letter-spacing="1">LIVE</text>
+        </svg>
+        <span class="navbar__title">RFEF LIVE</span>
+      </div>
+
+      <!-- Tabs de navegación -->
+      <nav class="navbar__tabs" role="tablist" aria-label="Secciones">
+        <button class="tab-btn tab-btn--active"
+                data-tab="standings"
+                role="tab"
+                aria-selected="true"
+                aria-controls="content-area">
+          Clasificación
+        </button>
+        <button class="tab-btn"
+                data-tab="fixtures"
+                role="tab"
+                aria-selected="false"
+                aria-controls="content-area">
+          Próximos
+        </button>
+        <button class="tab-btn"
+                data-tab="results"
+                role="tab"
+                aria-selected="false"
+                aria-controls="content-area">
+          Resultados
+        </button>
+        <button class="tab-btn tab-btn--live"
+                data-tab="live"
+                role="tab"
+                aria-selected="false"
+                aria-controls="content-area">
+          <span class="live-dot" aria-hidden="true"></span>
+          En Directo
+          <span class="live-count-badge" id="live-count-badge" hidden aria-label="partidos en directo">0</span>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════
+       FILTROS (se ocultan en tab "En Directo")
+  ══════════════════════════════════════════════════ -->
+  <div class="filters-bar" id="filters-bar">
+    <div class="filters-bar__inner">
+
+      <!-- Selector de liga -->
+      <div class="filter-group">
+        <span class="filter-label">LIGA</span>
+        <div class="filter-buttons" role="group" aria-label="Seleccionar liga">
+          <button class="filter-btn filter-btn--active" data-league="primera">
+            Primera RFEF
+          </button>
+          <button class="filter-btn" data-league="segunda">
+            Segunda RFEF
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de grupo (se rellena dinámicamente) -->
+      <div class="filter-group">
+        <span class="filter-label">GRUPO</span>
+        <div class="filter-buttons" id="group-buttons" role="group" aria-label="Seleccionar grupo">
+          <!-- Generado por app.js -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+  ══════════════════════════════════════════════════ -->
+  <main class="main-content">
+    <div id="content-area"
+         class="content-area"
+         role="tabpanel"
+         aria-live="polite"
+         aria-atomic="true">
+      <!-- Rellenado dinámicamente por app.js -->
+    </div>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER — Contador de llamadas API + atribución
+  ══════════════════════════════════════════════════ -->
+  <footer class="app-footer">
+    <div class="app-footer__inner">
+      <span id="api-quota-display" class="quota-display" title="Llamadas reales a la API (no cacheadas)">
+        Llamadas API hoy: —/100
+      </span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span class="footer-credit">
+        Datos: <a href="https://api-sports.io" target="_blank" rel="noopener">api-sports.io</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Scripts (orden importa: utils primero, luego render, luego controlador) -->
+  <script src="js/utils.js"></script>
+  <script src="js/standings.js"></script>
+  <script src="js/fixtures.js"></script>
+  <script src="js/live.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

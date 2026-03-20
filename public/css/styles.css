@@ -1,0 +1,970 @@
+/* ════════════════════════════════════════════════════════════════
+   RFEF Live — Hoja de estilos principal
+   Paleta oficial inspirada en rfef.es
+   ════════════════════════════════════════════════════════════════ */
+
+/* ─── Variables ─────────────────────────────────────────────────── */
+:root {
+  --color-bg:           #0D1B2A;
+  --color-bg-card:      #162236;
+  --color-bg-card-alt:  #1a2940;
+  --color-bg-hover:     #1e3150;
+  --color-border:       #1E3147;
+  --color-accent:       #CC0000;
+  --color-accent-hover: #aa0000;
+  --color-text:         #FFFFFF;
+  --color-text-secondary: #AAAAAA;
+  --color-promotion:    #28a745;
+  --color-playoff:      #2d7dd2;
+  --color-relegation:   #CC0000;
+
+  --font-title: 'Oswald', sans-serif;
+  --font-body:  'Roboto', sans-serif;
+
+  --navbar-height:  64px;
+  --filters-height: 56px;
+  --max-width:      1100px;
+  --radius:         0px; /* Estilo cuadrado, fiel a RFEF */
+  --transition:     0.18s ease;
+}
+
+/* ─── Reset & base ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color:            var(--color-text);
+  font-family:      var(--font-body);
+  font-size:        14px;
+  line-height:      1.5;
+  min-height:       100vh;
+}
+
+img {
+  display:    block;
+  max-width:  100%;
+  height:     auto;
+}
+
+button {
+  cursor:  pointer;
+  border:  none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ─── Navbar ────────────────────────────────────────────────────── */
+.navbar {
+  position:   sticky;
+  top:        0;
+  z-index:    100;
+  background: var(--color-bg);
+  border-bottom: 4px solid var(--color-accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.navbar__inner {
+  max-width:      var(--max-width);
+  margin:         0 auto;
+  padding:        0 16px;
+  height:         var(--navbar-height);
+  display:        flex;
+  align-items:    center;
+  justify-content: space-between;
+  gap:            16px;
+}
+
+.navbar__brand {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+  flex-shrink: 0;
+}
+
+.navbar__logo {
+  width:  44px;
+  height: 44px;
+}
+
+.navbar__title {
+  font-family:    var(--font-title);
+  font-size:      22px;
+  font-weight:    700;
+  letter-spacing: 2px;
+  color:          var(--color-text);
+  text-transform: uppercase;
+}
+
+/* ─── Tabs de navegación ─────────────────────────────────────────── */
+.navbar__tabs {
+  display:     flex;
+  align-items: stretch;
+  height:      var(--navbar-height);
+  overflow-x:  auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.navbar__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  display:        flex;
+  align-items:    center;
+  gap:            6px;
+  padding:        0 18px;
+  height:         100%;
+  font-family:    var(--font-title);
+  font-size:      14px;
+  font-weight:    500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color:          var(--color-text-secondary);
+  white-space:    nowrap;
+  border-bottom:  4px solid transparent;
+  margin-bottom:  -4px; /* Compensar el border del navbar */
+  transition:     color var(--transition), border-color var(--transition);
+}
+
+.tab-btn:hover {
+  color:        var(--color-text);
+  border-color: rgba(204, 0, 0, 0.4);
+}
+
+.tab-btn--active {
+  color:        var(--color-text);
+  border-color: var(--color-accent);
+}
+
+/* ─── Badge "En Directo" ─────────────────────────────────────────── */
+.live-dot {
+  width:            8px;
+  height:           8px;
+  border-radius:    50%;
+  background-color: var(--color-accent);
+  animation:        pulse-dot 1.6s ease-in-out infinite;
+  flex-shrink:      0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.3); }
+}
+
+/* ─── Barra de filtros ───────────────────────────────────────────── */
+.filters-bar {
+  background:   var(--color-bg-card);
+  border-bottom: 1px solid var(--color-border);
+  position:     sticky;
+  top:          var(--navbar-height);
+  z-index:      90;
+}
+
+.filters-bar__inner {
+  max-width:    var(--max-width);
+  margin:       0 auto;
+  padding:      10px 16px;
+  display:      flex;
+  flex-wrap:    wrap;
+  align-items:  center;
+  gap:          16px;
+}
+
+.filter-group {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+}
+
+.filter-label {
+  font-family:    var(--font-title);
+  font-size:      11px;
+  font-weight:    600;
+  letter-spacing: 1.5px;
+  color:          var(--color-text-secondary);
+  text-transform: uppercase;
+  white-space:    nowrap;
+}
+
+.filter-buttons {
+  display: flex;
+  gap:     4px;
+}
+
+.filter-btn {
+  padding:        6px 14px;
+  font-family:    var(--font-title);
+  font-size:      13px;
+  font-weight:    500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color:          var(--color-text-secondary);
+  border:         1px solid var(--color-border);
+  background:     transparent;
+  transition:     color var(--transition), background var(--transition), border-color var(--transition);
+}
+
+.filter-btn:hover {
+  color:            var(--color-text);
+  border-color:     var(--color-accent);
+  background-color: rgba(204, 0, 0, 0.08);
+}
+
+.filter-btn--active {
+  color:            var(--color-text);
+  background-color: var(--color-accent);
+  border-color:     var(--color-accent);
+}
+
+.filter-btn--active:hover {
+  background-color: var(--color-accent-hover);
+  border-color:     var(--color-accent-hover);
+}
+
+/* ─── Área de contenido principal ───────────────────────────────── */
+.main-content {
+  max-width: var(--max-width);
+  margin:    0 auto;
+  padding:   24px 16px 48px;
+}
+
+.content-area {
+  min-height: 400px;
+}
+
+/* ─── Tabla de clasificación ─────────────────────────────────────── */
+.standings-wrapper {
+  overflow-x: auto;
+}
+
+.standings-table {
+  width:           100%;
+  border-collapse: collapse;
+  font-size:       13px;
+}
+
+.standings-table thead {
+  background-color: var(--color-bg-card);
+  border-bottom:    2px solid var(--color-accent);
+}
+
+.standings-table th {
+  padding:        10px 8px;
+  font-family:    var(--font-title);
+  font-size:      11px;
+  font-weight:    600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color:          var(--color-text-secondary);
+  text-align:     center;
+  white-space:    nowrap;
+}
+
+.standings-table th.col-team {
+  text-align: left;
+  padding-left: 12px;
+}
+
+.standings-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition:    background var(--transition);
+}
+
+.standings-table tbody tr:nth-child(even) {
+  background-color: var(--color-bg-card);
+}
+
+.standings-table tbody tr:nth-child(odd) {
+  background-color: #162236;
+}
+
+.standings-table tbody tr:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.standings-table td {
+  padding:    10px 8px;
+  text-align: center;
+  color:      var(--color-text);
+}
+
+.standings-table td.col-rank {
+  width:    48px;
+  position: relative;
+  padding-left: 0;
+}
+
+.standings-table td.col-pts strong {
+  font-family:  var(--font-title);
+  font-size:    15px;
+  font-weight:  700;
+  color:        var(--color-text);
+}
+
+/* ─── Indicador lateral de zona ──────────────────────────────────── */
+.rank-indicator {
+  display:       inline-block;
+  width:         3px;
+  height:        20px;
+  margin-right:  8px;
+  vertical-align: middle;
+  background:    transparent;
+}
+
+.zone-promotion .rank-indicator   { background: var(--color-promotion); }
+.zone-playoff   .rank-indicator   { background: var(--color-playoff); }
+.zone-relegation .rank-indicator  { background: var(--color-relegation); }
+
+/* Separadores visuales entre zonas */
+.standings-table tbody tr.zone-promotion:last-of-type td {
+  border-bottom: 2px solid var(--color-promotion);
+}
+.standings-table tbody tr.zone-playoff:last-of-type td {
+  border-bottom: 2px solid var(--color-playoff);
+}
+
+/* ─── Info de equipo dentro de la tabla ──────────────────────────── */
+.team-info {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  text-align:  left;
+}
+
+.team-logo {
+  object-fit:  contain;
+  flex-shrink: 0;
+}
+
+.standings-table .team-logo {
+  width:  22px;
+  height: 22px;
+}
+
+.team-logo--md {
+  width:  32px;
+  height: 32px;
+}
+
+.team-logo--lg {
+  width:  48px;
+  height: 48px;
+}
+
+.team-name {
+  font-weight: 500;
+  color:       var(--color-text);
+  white-space: nowrap;
+}
+
+/* ─── Indicadores de forma ───────────────────────────────────────── */
+.form-indicators {
+  display:     flex;
+  gap:         3px;
+  justify-content: center;
+}
+
+.form-dot {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  width:           18px;
+  height:          18px;
+  font-size:       9px;
+  font-weight:     700;
+  font-family:     var(--font-title);
+  border-radius:   2px;
+  color:           #fff;
+}
+
+.form-win  { background-color: #28a745; }
+.form-draw { background-color: #6c757d; }
+.form-loss { background-color: #CC0000; }
+
+/* ─── Leyenda de zonas ───────────────────────────────────────────── */
+.standings-legend {
+  display:    flex;
+  flex-wrap:  wrap;
+  gap:        16px;
+  margin-top: 12px;
+  padding:    10px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.legend-item {
+  display:     flex;
+  align-items: center;
+  gap:         6px;
+  font-size:   11px;
+  color:       var(--color-text-secondary);
+  font-family: var(--font-title);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.legend-item::before {
+  content:       '';
+  display:       block;
+  width:         12px;
+  height:        12px;
+  border-radius: 2px;
+}
+
+.legend-promotion::before { background: var(--color-promotion); }
+.legend-playoff::before   { background: var(--color-playoff); }
+.legend-relegation::before { background: var(--color-relegation); }
+
+/* ─── Tarjetas de partido (próximos / resultados) ───────────────── */
+.fixtures-list {
+  display:        flex;
+  flex-direction: column;
+  gap:            10px;
+}
+
+.fixture-card {
+  background:   var(--color-bg-card);
+  border-left:  4px solid var(--color-accent);
+  padding:      12px 16px;
+  transition:   background var(--transition);
+}
+
+.fixture-card:hover {
+  background: var(--color-bg-hover);
+}
+
+.fixture-header {
+  display:       flex;
+  align-items:   center;
+  gap:           10px;
+  margin-bottom: 10px;
+}
+
+.fixture-date {
+  font-size:   12px;
+  color:       var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+.fixture-body {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+}
+
+.fixture-team {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  flex:        1;
+}
+
+.fixture-team--home {
+  justify-content: flex-end;
+}
+
+.fixture-team--away {
+  justify-content: flex-start;
+}
+
+.fixture-team .team-name {
+  font-family:  var(--font-title);
+  font-size:    15px;
+  font-weight:  500;
+  letter-spacing: 0.3px;
+}
+
+.fixture-vs {
+  font-family:    var(--font-title);
+  font-size:      13px;
+  color:          var(--color-text-secondary);
+  letter-spacing: 1px;
+  flex-shrink:    0;
+  width:          40px;
+  text-align:     center;
+}
+
+.fixture-score {
+  display:         flex;
+  align-items:     center;
+  gap:             6px;
+  flex-shrink:     0;
+  width:           72px;
+  justify-content: center;
+}
+
+.score-home,
+.score-away {
+  font-family:  var(--font-title);
+  font-size:    24px;
+  font-weight:  700;
+  color:        var(--color-text);
+  min-width:    22px;
+  text-align:   center;
+}
+
+.score-separator {
+  color:     var(--color-text-secondary);
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.fixture-venue {
+  margin-top: 8px;
+  font-size:  11px;
+  color:      var(--color-text-secondary);
+}
+
+/* ─── Badges de estado ───────────────────────────────────────────── */
+.status-badge {
+  display:        inline-block;
+  padding:        2px 8px;
+  font-family:    var(--font-title);
+  font-size:      10px;
+  font-weight:    600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.status-ft    { background: #2a2a2a; color: var(--color-text-secondary); }
+.status-aet   { background: #3a2a00; color: #ffaa00; }
+.status-pen   { background: #3a2a00; color: #ffaa00; }
+.status-canc  { background: #3a0000; color: #ff4444; }
+.status-pst   { background: #1e1e3a; color: #7777ff; }
+
+/* ─── Tarjetas EN DIRECTO ────────────────────────────────────────── */
+.live-list {
+  display:        flex;
+  flex-direction: column;
+  gap:            16px;
+}
+
+.live-card {
+  background:   var(--color-bg-card);
+  border:       1px solid var(--color-border);
+  border-left:  4px solid var(--color-accent);
+  overflow:     hidden;
+}
+
+.live-card__header {
+  display:          flex;
+  align-items:      center;
+  gap:              10px;
+  padding:          8px 16px;
+  background-color: rgba(204, 0, 0, 0.08);
+  border-bottom:    1px solid var(--color-border);
+}
+
+.live-badge {
+  display:          flex;
+  align-items:      center;
+  gap:              6px;
+  padding:          3px 10px;
+  background-color: var(--color-accent);
+  font-family:      var(--font-title);
+  font-size:        11px;
+  font-weight:      700;
+  letter-spacing:   1.5px;
+  color:            #fff;
+}
+
+.live-badge__dot {
+  width:         7px;
+  height:        7px;
+  border-radius: 50%;
+  background:    #fff;
+  animation:     pulse-dot 1s ease-in-out infinite;
+  flex-shrink:   0;
+}
+
+.live-league {
+  font-size:   12px;
+  color:       var(--color-text-secondary);
+  font-family: var(--font-title);
+  letter-spacing: 0.5px;
+  flex:        1;
+  white-space: nowrap;
+  overflow:    hidden;
+  text-overflow: ellipsis;
+}
+
+.live-minute {
+  font-family:  var(--font-title);
+  font-size:    14px;
+  font-weight:  600;
+  color:        var(--color-text);
+  white-space:  nowrap;
+  flex-shrink:  0;
+}
+
+.live-card__body {
+  display:         flex;
+  align-items:     center;
+  padding:         20px 16px;
+  gap:             12px;
+}
+
+.live-team {
+  display:     flex;
+  flex:        1;
+  align-items: center;
+  gap:         12px;
+}
+
+.live-team--home {
+  justify-content: flex-end;
+}
+
+.live-team--away {
+  justify-content: flex-start;
+}
+
+.live-team__name {
+  font-family:    var(--font-title);
+  font-size:      18px;
+  font-weight:    600;
+  letter-spacing: 0.5px;
+  color:          var(--color-text);
+}
+
+.live-scoreboard {
+  display:         flex;
+  align-items:     center;
+  gap:             8px;
+  flex-shrink:     0;
+}
+
+.live-score {
+  font-family:  var(--font-title);
+  font-size:    42px;
+  font-weight:  700;
+  line-height:  1;
+  color:        var(--color-text);
+  min-width:    36px;
+  text-align:   center;
+}
+
+.live-score__separator {
+  font-family:    var(--font-title);
+  font-size:      28px;
+  color:          var(--color-text-secondary);
+  font-weight:    300;
+}
+
+/* ─── Estado vacío ───────────────────────────────────────────────── */
+.empty-message {
+  padding:    48px 16px;
+  text-align: center;
+  color:      var(--color-text-secondary);
+  font-size:  15px;
+}
+
+.empty-live {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content: center;
+  padding:        80px 16px;
+  text-align:     center;
+  gap:            12px;
+}
+
+.empty-live__icon {
+  font-size:   48px;
+  line-height: 1;
+  opacity:     0.4;
+}
+
+.empty-live__title {
+  font-family:    var(--font-title);
+  font-size:      22px;
+  font-weight:    600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color:          var(--color-text);
+}
+
+.empty-live__subtitle {
+  font-size: 13px;
+  color:     var(--color-text-secondary);
+}
+
+/* ─── Skeleton screens ───────────────────────────────────────────── */
+.skeleton-wrapper {
+  display:        flex;
+  flex-direction: column;
+  gap:            8px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -800px 0; }
+  100% { background-position:  800px 0; }
+}
+
+.skeleton {
+  background:      linear-gradient(
+    90deg,
+    var(--color-bg-card) 25%,
+    var(--color-bg-card-alt) 50%,
+    var(--color-bg-card) 75%
+  );
+  background-size: 800px 100%;
+  animation:       shimmer 1.4s infinite linear;
+}
+
+.skeleton-row {
+  height:        44px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skeleton-card {
+  height:     88px;
+  border-left: 4px solid var(--color-border);
+}
+
+/* ─── Mensajes de error ──────────────────────────────────────────── */
+.error-message {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            12px;
+  padding:        64px 16px;
+  text-align:     center;
+}
+
+.error-message__title {
+  font-family:    var(--font-title);
+  font-size:      18px;
+  font-weight:    600;
+  color:          var(--color-text);
+  letter-spacing: 0.5px;
+}
+
+.error-message__details {
+  font-size: 12px;
+  color:     var(--color-text-secondary);
+  max-width: 400px;
+}
+
+.btn-retry {
+  margin-top:   8px;
+  padding:      10px 24px;
+  background:   var(--color-accent);
+  color:        #fff;
+  font-family:  var(--font-title);
+  font-size:    14px;
+  font-weight:  600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition:   background var(--transition);
+}
+
+.btn-retry:hover {
+  background: var(--color-accent-hover);
+}
+
+/* ─── Información de caché ───────────────────────────────────────── */
+.cache-info {
+  margin-top: 12px;
+  font-size:  11px;
+  color:      var(--color-text-secondary);
+  text-align: right;
+  font-family: var(--font-body);
+  font-weight: 300;
+}
+
+/* ─── Badge de partidos en directo (en la tab) ──────────────────── */
+.live-count-badge {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  min-width:       18px;
+  height:          18px;
+  padding:         0 5px;
+  border-radius:   9px;
+  background:      var(--color-accent);
+  color:           #fff;
+  font-family:     var(--font-title);
+  font-size:       10px;
+  font-weight:     700;
+  line-height:     1;
+  margin-left:     4px;
+  animation:       pulse-dot 1.6s ease-in-out infinite;
+}
+
+.live-count-badge[hidden] {
+  display: none;
+}
+
+/* ─── Banner de datos obsoletos (fallback 429) ───────────────────── */
+.stale-banner {
+  display:      flex;
+  align-items:  center;
+  gap:          8px;
+  padding:      10px 16px;
+  margin-bottom: 16px;
+  background:   rgba(255, 165, 0, 0.10);
+  border-left:  4px solid #e8a000;
+  font-size:    13px;
+  color:        #e8a000;
+  font-family:  var(--font-body);
+}
+
+.stale-banner__icon {
+  font-size:   16px;
+  flex-shrink: 0;
+}
+
+/* ─── Footer con contador de cuota ──────────────────────────────── */
+.app-footer {
+  background:    var(--color-bg-card);
+  border-top:    1px solid var(--color-border);
+  padding:       12px 16px;
+  margin-top:    auto;
+}
+
+.app-footer__inner {
+  max-width:    var(--max-width);
+  margin:       0 auto;
+  display:      flex;
+  align-items:  center;
+  gap:          10px;
+  flex-wrap:    wrap;
+}
+
+.quota-display {
+  font-family:  var(--font-title);
+  font-size:    12px;
+  font-weight:  500;
+  letter-spacing: 0.5px;
+  color:        var(--color-text-secondary);
+  transition:   color var(--transition);
+}
+
+/* Aviso cuando la cuota supera el 80% */
+.quota-display.quota-warning {
+  color: #e8a000;
+}
+
+/* Alerta cuando supera el 95% */
+.quota-display.quota-critical {
+  color:     var(--color-accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.footer-sep {
+  color:     var(--color-border);
+  font-size: 14px;
+}
+
+.footer-credit {
+  font-size: 11px;
+  color:     var(--color-text-secondary);
+}
+
+.footer-credit a {
+  color:           var(--color-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-credit a:hover {
+  color: var(--color-text);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar__title {
+    font-size: 18px;
+  }
+
+  .navbar__logo {
+    width:  36px;
+    height: 36px;
+  }
+
+  .tab-btn {
+    padding:   0 12px;
+    font-size: 12px;
+  }
+
+  .filters-bar__inner {
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            10px;
+  }
+
+  .main-content {
+    padding: 16px 12px 32px;
+  }
+
+  /* Tabla: ocultar columnas menos importantes en móvil */
+  .standings-table .col-form,
+  .standings-table th:nth-child(7),
+  .standings-table th:nth-child(8),
+  .standings-table td:nth-child(7),
+  .standings-table td:nth-child(8) {
+    display: none;
+  }
+
+  .live-team__name,
+  .fixture-team .team-name {
+    font-size: 13px;
+  }
+
+  .live-score {
+    font-size: 32px;
+  }
+
+  .score-home,
+  .score-away {
+    font-size: 20px;
+  }
+
+  .fixture-team--home,
+  .fixture-team--away {
+    flex-direction: column;
+    text-align:     center;
+    gap:            4px;
+  }
+
+  .fixture-team--home {
+    align-items: flex-end;
+  }
+
+  .fixture-team--away {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__title {
+    display: none;
+  }
+
+  .fixture-body {
+    gap: 6px;
+  }
+
+  .live-team {
+    flex-direction: column;
+    gap:            6px;
+    text-align:     center;
+  }
+
+  .live-team--home,
+  .live-team--away {
+    justify-content: center;
+  }
+}
